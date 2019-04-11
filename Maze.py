@@ -48,6 +48,25 @@ class Maze(viz.EventClass):
 		self.maze = [[4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,4]] + self.maze
 		self.maze = [[4,0,0,0,0,0,0,4,4,0,0,4,4,0,0,4,4,4,0,0,4,0,0,4,4,1,1,4]] + self.maze
 		self.maze = [[4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,0,4,0,0,4,4,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,4,0,0,1,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
+		##################################################################################
+		self.maze = [[4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4]] + self.maze
+		self.maze = [[4,1,1,4,4,0,0,4,4,0,0,4,4,1,1,4,4,0,0,4,4,0,0,4,4,1,1,4]] + self.maze
+		self.maze = [[4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,4,4,4,0,0,4,0,0,4,4,4,4,4,4,0,0,0,4,0,0,0,4,0,0,4]] + self.maze
+		self.maze = [[4,0,0,4,4,4,0,0,4,0,0,4,4,4,4,4,4,0,0,0,4,0,0,4,4,0,0,4]] + self.maze
+		self.maze = [[4,0,0,4,4,4,0,0,4,0,0,4,4,4,4,4,4,0,0,0,4,0,0,4,4,0,0,4]] + self.maze
+		self.maze = [[4,1,1,4,4,4,0,0,4,1,1,4,4,4,4,4,4,0,0,4,4,1,1,1,4,0,0,4]] + self.maze
+		self.maze = [[4,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,4]] + self.maze
+		self.maze = [[4,0,0,0,0,0,0,4,4,0,0,4,4,0,0,4,4,4,0,0,4,0,0,4,4,1,1,4]] + self.maze
+		self.maze = [[4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,4,4,0,0,0,4,0,0,4,4,0,0,4]] + self.maze
 		self.maze = [[4,0,0,0,4,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
 		self.maze = [[4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
 		self.maze = [[4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,4]] + self.maze
@@ -91,10 +110,10 @@ class Maze(viz.EventClass):
 				else:
 					m.postScale(1,1,1)
 				self.blocks = [[xx,zz]] + self.blocks
-				#print(self.blocks)
+				
 				block.setMatrix(m)
 				
-		#print(self.blocks)		
+				
 		self.avatar = viz.add('vcc_female.cfg')
 		
 		m = viz.Matrix()
@@ -110,18 +129,16 @@ class Maze(viz.EventClass):
 		
 		if (key == viz.KEY_RIGHT):
 			self.theta = self.theta + 90
-			
 			m = viz.Matrix()
 			m.postAxisAngle(0,1,0,self.theta)
 			m.postTrans(self.x,self.y,self.z)
 			self.avatar.setMatrix(m)
 			if(self.theta == 360):
 				self.theta = 0
-			print(self.theta)
+			
 			
 		if (key == viz.KEY_LEFT):
 			self.theta = self.theta - 90
-			
 			m = viz.Matrix()
 			m.postAxisAngle(0,1,0,self.theta)
 			m.postTrans(self.x,self.y,self.z)
@@ -158,7 +175,6 @@ class Maze(viz.EventClass):
 				self.avatar.setMatrix(m)
 			
 		if (key == viz.KEY_DOWN):
-					
 			self.isValid = False
 			if(self.theta == 270 or self.theta == -90):
 				if(self.maze[int(self.x)][int(self.z-1)] == 0):
@@ -205,7 +221,6 @@ class Maze(viz.EventClass):
 				m.postAxisAngle(0,1,0,self.theta)
 				m.postTrans(self.x,self.y,self.z)
 				self.avatar.setMatrix(m)
-
 			
 		if (key == '1'):
 			view = viz.MainView
@@ -253,7 +268,7 @@ class Maze(viz.EventClass):
 				mat.postAxisAngle(0,0,1,40)
 				mat.postTrans(self.birdX,self.birdY,self.birdZ)
 				view.setMatrix(mat)
-				print(self.birdZ)
+				
 				
 			elif (key == 'w'):
 				view = viz.MainView
@@ -263,7 +278,7 @@ class Maze(viz.EventClass):
 				mat.postAxisAngle(0,0,1,40)
 				mat.postTrans(self.birdX,self.birdY,self.birdZ)
 				view.setMatrix(mat)
-				print(self.birdX)
+				
 				
 			elif (key == 's'):
 				view = viz.MainView
@@ -273,7 +288,7 @@ class Maze(viz.EventClass):
 				mat.postAxisAngle(0,0,1,40)
 				mat.postTrans(self.birdX,self.birdY,self.birdZ)
 				view.setMatrix(mat)
-				print(self.birdX)
+				
 				
 	# Adds coodinate system that originates at (0,0,0) and extends
 	# down the +x, +y, and +z directions.  Locations 1 and 2 units
