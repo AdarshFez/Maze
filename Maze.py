@@ -22,11 +22,15 @@ class Maze(viz.EventClass):
 		self.x = 2
 		self.z = 2
 		self.y = 1
+		self.monX = 2
+		self.monY = 1
+		self.monZ = 27
 		self.first = False
 		self.bird = True
 		self.birdX =20
 		self.birdY = 15
 		self.birdZ  =5
+		self.EndGame = False
 		# The 2D array below stores the representation of a maze.
 		# Array entries containing a 2 represent 1 x 2 x 1 wall blocks.
 		# Array entries containing a 0 represent 1 x 0.1 x 1 floor blocks.
@@ -115,18 +119,22 @@ class Maze(viz.EventClass):
 				
 				
 		self.avatar = viz.add('vcc_female.cfg')
-		
 		m = viz.Matrix()
 		m.postTrans(self.x,self.y,self.z)
 		m.postAxisAngle(0,1,0,self.theta)
 		self.avatar.setMatrix(m)
 		
+		self.monster = viz.add('vcc_female.cfg')
+		m = viz.Matrix()
+		m.postTrans(self.monX,self.monY,self.monZ)
+		m.postAxisAngle(0,1,0,self.theta)
+		self.monster.setMatrix(m)
 		
 		
 	# Key pressed down event code.
 	
 	def onKeyDown(self,key):
-		
+		print(self.EndGame)
 		if (key == viz.KEY_RIGHT):
 			self.theta = self.theta + 90
 			m = viz.Matrix()
@@ -160,7 +168,7 @@ class Maze(viz.EventClass):
 			elif(self.theta == 180 or self.theta == -180):
 				if(self.maze[int(self.x-1)][int(self.z-2)] == 1):
 					self.isValid = True										
-			if(self.isValid):
+			if(self.isValid and self.EndGame == False):
 				if(self.theta == 90 or self.theta == -270):
 					self.x = self.x + 2
 				elif(self.theta == 0):
@@ -188,7 +196,7 @@ class Maze(viz.EventClass):
 			elif(self.theta == 0):
 				if(self.maze[int(self.x-1)][int(self.z-2)] == 0):
 					self.isValid = True										
-			if(self.isValid):
+			if(self.isValid and self.EndGame == False):
 				m = viz.Matrix()
 				self.moveZ = math.cos(math.radians(self.theta))
 				self.moveX = math.sin(math.radians(self.theta))				
@@ -212,7 +220,7 @@ class Maze(viz.EventClass):
 			elif(self.theta == 180 or self.theta == -180):
 				if(self.maze[int(self.x-1)][int(self.z-2)] == 0):
 					self.isValid = True										
-			if(self.isValid):
+			if(self.isValid and self.EndGame == False):
 				m = viz.Matrix()
 				self.moveZ = math.cos(math.radians(self.theta))
 				self.moveX = math.sin(math.radians(self.theta))				
@@ -249,7 +257,11 @@ class Maze(viz.EventClass):
 			view.setMatrix(mat)
 			self.first = True
 			self.bird = False
-			
+		self.monsterMove()
+		
+		print(self.x)
+		
+		print(self.z)
 		if (self.bird == True):
 			if (key == 'a'):
 				self.birdZ = self.birdZ -1
@@ -316,5 +328,13 @@ class Maze(viz.EventClass):
 		#z=2 tick mark
 		viz.vertex(-.25,0,2);  viz.vertex(.25,0,2)
 		viz.endLayer()
-		
+	
+	def monsterMove(self):
+		self.shortest = 9999
+		self.decidedX = -1
+		self.decidedY = -1
+		if (self.monX == self.x and self.monZ == self.z):
+			self.EndGame = True
 
+		if(self.EndGame == False):
+			print()
