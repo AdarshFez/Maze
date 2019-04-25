@@ -1,0 +1,28 @@
+import viz
+import vizshape
+import vizcam
+import math
+class Sphere:
+	def __init__(self):
+		self.x = 0
+		self.z = 0
+		self.vx = 0
+		self.vz = 0
+		self.vertices = vizshape.addSphere(.125,10,10)
+		
+	def getX(self):
+		return self.x
+			
+	def getZ(self):
+		return self.z
+			
+	def setXZ(self, x, z):
+		self.x = x
+		self.z = z
+		mat = viz.Matrix()
+		mat.postTrans(self.x, self.z)
+		self.vertices.setMatrix(mat)
+		
+	def setVXVZ(self,vx,vz):
+		self.vx = vx
+		self.vz = vz
