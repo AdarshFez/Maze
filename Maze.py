@@ -319,8 +319,29 @@ class Maze(viz.EventClass):
 	def monsterMove(self):
 		self.shortest = 9999
 		self.decidedX = -1
-		self.decidedY = -1
+		self.decidedZ = -1
 		if (self.monX == self.x and self.monZ == self.z):
 			self.EndGame = True
 			t = viz.addText("Total Points: "+ str(self.points),viz.SCREEN, pos = [0,0,0])
 			p = viz.addText(str(self.points), viz.SCREEN, pos = [5,0,0])
+
+
+		if(self.EndGame == False):
+			
+			
+			if(self.x > self.monX and self.maze[int(self.monX+1)][int(self.monZ)] != 4):
+				self.monX = self.monX + 1
+			elif(self.x < self.monX and self.maze[int(self.monX-1)][int(self.monZ)] != 4):
+					self.monX = self.monX -1
+			elif(self.z > self.monZ and self.maze[int(self.monX)][int(self.monZ+1)] != 4):
+					self.monX = self.monX + 1
+			elif(self.z< self.monZ and self.maze[int(self.monX)][int(self.monZ-1)] != 4):
+						self.monZ = self.monZ -1
+			elif(self.monX == self.x and self.monZ == self.z):
+				self.EndGame = True
+			
+			m = viz.Matrix()
+			m.postTrans(int(self.monX),self.monY,int(self.monZ))
+			
+			self.monster.setMatrix(m)
+			
